@@ -3,7 +3,6 @@ function ConvertHandler() {
 
   this.getNum = function(input) {
     const splitIndex = input.indexOf(input.match(/[A-Z]+/i))
-    // console.log('splitIndex: '+splitIndex)
     let initNum;
     if (splitIndex === 0) {
       initNum = '1.0';
@@ -12,19 +11,16 @@ function ConvertHandler() {
     } else {
       initNum = input.slice(0, splitIndex)
     }
-    console.log(initNum.split('/').join(''))
     if (/[^A-Z]/ig.test(input.slice(splitIndex)) || /\s+/.test(initNum)) {
       initNum = NaN
     } else if ((initNum.match(/\//g) || '').length === 1) {
       initNum = Number(initNum.split('/')[0]) / Number(initNum.split('/')[1])
     }
-    // console.log('num:', (isNaN(initNum) ? NaN : Number(initNum)))
     return isNaN(initNum) ? NaN : Number(initNum);
   };
   
   this.getUnit = function(input) {
     const splitIndex = input.indexOf(input.match(/[A-Z]+/i))
-    // console.log('splitIndex: '+splitIndex)
     let initUnit;
     if (splitIndex === -1) {
       initUnit = 'invalid'
@@ -34,7 +30,6 @@ function ConvertHandler() {
     if (/[^A-Z]/ig.test(initUnit) || !units.includes(initUnit.toLowerCase())) {
       initUnit = 'invalid'
     }
-    // console.log('unit:', (initUnit.toLowerCase() === 'l' ? 'L' : initUnit.toLowerCase()))
     return initUnit.toLowerCase() === 'l' ? 'L' : initUnit.toLowerCase();
   };
   
@@ -67,7 +62,7 @@ function ConvertHandler() {
     let fullUnit;
     switch (unit) {
       case 'gal':
-        fullUnit = 'gallon'
+        fullUnit = 'gallons'
         break
       case 'L':
         fullUnit = 'liters'
